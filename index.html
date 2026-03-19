@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anparasan Godfrivood | Premium Portfolio</title>
+    <style>
+        /* --- Import Premium Font (Inter) --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        /* --- Global Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top left, #1a1c2c 0%, #0d0e15 100%);
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* --- Premium 'Floating' Container --- */
+        .main-wrapper {
+            width: 90%;
+            max-width: 1400px;
+            margin: 5vh auto;
+            display: grid;
+            grid-template-columns: 350px 1fr; /* Left sidebar, Right main content */
+            gap: 30px;
+        }
+
+        /* --- Shared Glassmorphism Style --- */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- LEFT SIDEBAR (Profile & Contact) --- */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            position: sticky;
+            top: 5vh;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, #00d2ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-header p {
+            font-size: 1rem;
+            color: #b0b0b0;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        .contact-info h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+            transition: transform 0.2s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-label {
+            color: #00d2ff;
+            font-weight: 600;
+            width: 80px;
+            font-size: 0.9rem;
+        }
+
+        .contact-value {
+            color: #e0e0e0;
+            font-size: 0.95rem;
+            word-break: break-all; /* Ensures email doesn't break layout */
+        }
+
+        /* --- RIGHT MAIN CONTENT --- */
+        .main-content {
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+            gap: 30px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 50px;
+            height: 3px;
+            background: #00d2ff;
+            border-radius: 2px;
+        }
+
+        .summary-panel p {
+            font-size: 1.1rem;
+            color: #d1d1d1;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Premium Project Highlight */
+        .project-panel {
+            transition: box-shadow 0.3s ease, border 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-panel:hover {
+            border: 1px solid rgba(0, 210, 255, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 210, 255, 0.15);
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .project-panel h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .project-tag {
+            background: rgba(0, 210, 255, 0.15);
+            color: #00d2ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .project-panel p {
+            color: #c0c0c0;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        /* Skills Integration */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .skill-card h4 {
+            color: #00d2ff;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .skill-card p {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+
+        /* --- RESPONSIVE DESIGN (Tablets/Phones) --- */
+        @media (max-width: 1100px) {
+            .main-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .glass-panel { padding: 25px; }
+            .profile-header h1 { font-size: 1.8rem; }
+            .project-meta { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        
+        <aside class="sidebar glass-panel">
+            <div class="profile-header">
+                <h1>Anparasan<br>Godfrivood</h1>
+                <p>Hardware Specialist | Software Developer (L5)</p>
+            </div>
+
+            <div class="contact-info">
+                <h3>Contact</h3>
+                <ul class="contact-list">
+                    <li class="contact-item">
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">godvinstrange@gmail.com</span>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-label">Phone</span>
+                        <span class="contact-value">+94 40133517</span>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-label">Location</span>
+                        <span class="contact-value">Brown Road, Kokuvil East.</span>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <section class="summary-panel glass-panel">
+                <h2 class="section-title">Executive Summary</h2>
+                <p>A motivated technology professional born in 2001, dedicated to bridging the gap between robust physical infrastructure and intuitive software solutions. Currently leveraging a strong foundation in ICT Level 4 (Hardware & Networking Technology) to excel in advanced Software Engineering (Level 5), with a primary focus on developing modern, efficient management ecosystems.</p>
+            </section>
+
+            <section class="project-panel glass-panel">
+                <div class="project-meta">
+                    <h2 class="section-title">Featured Project</h2>
+                    <span class="project-tag">Core Development</span>
+                </div>
+                <h3>Stock Management System</h3>
+                <p>Spearheaded the design and implementation of a centralized asset management system. This platform provides real-time tracking, data integrity verification, and lifecycle management for critical hardware, including Laptops, Desktop Computers, and Mobile Devices. Built with a focus on administrative efficiency and modern UI principles.</p>
+                <div class="tech-stack">
+                    <span class="tech-item">System Architecture</span>
+                    <span class="tech-item">Asset Tracking</span>
+                    <span class="tech-item">Data Integrity</span>
+                    <span class="tech-item">UI/UX Design</span>
+                </div>
+            </section>
+
+            <section class="skills-panel glass-panel">
+                <h2 class="section-title">Core Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h4>Infrastructure</h4>
+                        <p>Hardware & Networking Technology (ICT L4)</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Development</h4>
+                        <p>Software Engineering Principles (ICT L5)</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Frontend</h4>
+                        <p>HTML5, CSS3, Modern UI/UX</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Design Systems</h4>
+                        <p>Advanced Glassmorphism & Responsiveness</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
